@@ -36,6 +36,7 @@ resource "azurerm_postgresql_flexible_server" "databaseusersmanagement" {
   version                = var.server_version
   sku_name               = var.server_sku_name
   delegated_subnet_id    = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/virtualNetworks/vnet-int/subnets/snet-int"
+  private_dns_zone_id = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/privateDnsZones/plink.postgres.database.azure.com"
   public_network_access_enabled = false
   administrator_login    = var.server_administrator_login
   administrator_password = var.server_administrator_password
