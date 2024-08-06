@@ -103,6 +103,7 @@ resource "azurerm_linux_web_app" "wausersmanagement" {
   }
 }
 
+
 resource "azurerm_private_endpoint" "peext" {
   name                = var.pe_usermanagement
   location            = var.resource_group_location
