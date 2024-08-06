@@ -2,10 +2,6 @@ variable subscription_id {
   type = string
 }
 
-variable subscription_id_int {
-  type = string
-}
-
 variable DOCKER_IMAGE {
   type = string
   default = "users-management:latest"
