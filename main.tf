@@ -103,21 +103,6 @@ resource "azurerm_linux_web_app" "wausersmanagement" {
   }
 }
 
-
-resource "azurerm_private_endpoint" "peext" {
-  name                = var.pe_usermanagement
-  location            = var.resource_group_location
-  resource_group_name = azurerm_resource_group.rgusersmanagement.name
-  subnet_id           = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/virtualNetworks/vnet-ext/subnets/snet-ext"
-
-  private_service_connection {
-    name                           = var.pe_connection_name
-    private_connection_resource_id = azurerm_linux_web_app.wausersmanagement.id
-    is_manual_connection           = false
-    subresource_names              = ["sites"]
-  }
-}
-
 resource "azurerm_linux_function_app" "linux_function_app" {
   name                        = var.function_app_name
   location                    = azurerm_storage_account.sausersmanagement.location

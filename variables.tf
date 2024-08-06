@@ -37,16 +37,6 @@ variable tenant_id {
   default = "c9ad96a7-2bac-49a7-abf6-8e932f60bf2b"
 }
 
-variable pe_usermanagement {
-  type = string
-  default = "pe-usermanagement"
-}
-
-variable pe_connection_name {
-  type = string
-  default = "pe-connection"
-}
-
 variable web_app_name {
   type = string
   default = "wa-try-vnet"
