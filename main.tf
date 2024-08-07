@@ -13,13 +13,13 @@ resource "azurerm_resource_group" "rgusersmanagement" {
   location = var.resource_group_location
 }
 
-resource "azurerm_storage_account" "sausersmanagement" {
-  name                     = var.storage_account_name
-  resource_group_name      = azurerm_resource_group.rgusersmanagement.name
-  location                 = var.resource_group_location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
+# resource "azurerm_storage_account" "sausersmanagement" {
+#   name                     = var.storage_account_name
+#   resource_group_name      = azurerm_resource_group.rgusersmanagement.name
+#   location                 = var.resource_group_location
+#   account_tier             = "Standard"
+#   account_replication_type = "LRS"
+# }
 
 resource "azurerm_service_plan" "spusersmanagement" {
   name                = var.service_plan_name
@@ -108,7 +108,7 @@ resource "azurerm_linux_function_app" "linux_function_app" {
   location                    = azurerm_storage_account.sausersmanagement.location
   resource_group_name         = azurerm_storage_account.sausersmanagement.resource_group_name
   service_plan_id             = azurerm_service_plan.spusersmanagement.id
-  storage_account_name        = azurerm_storage_account.sausersmanagement.name
+  # storage_account_name        = azurerm_storage_account.sausersmanagement.name
   storage_account_access_key  = azurerm_storage_account.sausersmanagement.primary_access_key
   functions_extension_version = "~4"
 
