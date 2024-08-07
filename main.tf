@@ -58,7 +58,7 @@ resource "azurerm_linux_web_app" "wausersmanagement" {
   resource_group_name = azurerm_resource_group.rgusersmanagement.name
   location            = var.resource_group_location
   service_plan_id     = azurerm_service_plan.spusersmanagement.id
-  
+  virtual_network_subnet_id = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/virtualNetworks/vnet-ext/subnets/snet-wa-integration/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/virtualNetworks/vnet-ext/subnets/snet-wa-integration"
   depends_on = [ 
     azurerm_postgresql_flexible_server.databaseusersmanagement
   ]
