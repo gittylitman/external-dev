@@ -1,5 +1,6 @@
 variable subscription_id {
   type = string
+  default = "22710479-535c-4bc6-9d25-2194bd78372f"
 }
 
 variable DOCKER_IMAGE {
