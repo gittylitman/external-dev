@@ -13,13 +13,13 @@ resource "azurerm_resource_group" "rgusersmanagement" {
   location = var.resource_group_location
 }
 
-# resource "azurerm_storage_account" "sausersmanagement" {
-#   name                     = var.storage_account_name
-#   resource_group_name      = azurerm_resource_group.rgusersmanagement.name
-#   location                 = var.resource_group_location
-#   account_tier             = "Standard"
-#   account_replication_type = "LRS"
-# }
+resource "azurerm_storage_account" "sausersmanagement" {
+  name                     = var.storage_account_name
+  resource_group_name      = azurerm_resource_group.rgusersmanagement.name
+  location                 = var.resource_group_location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
 
 resource "azurerm_service_plan" "spusersmanagement" {
   name                = var.service_plan_name
@@ -35,8 +35,8 @@ resource "azurerm_postgresql_flexible_server" "databaseusersmanagement" {
   location               = azurerm_service_plan.spusersmanagement.location
   version                = var.server_version
   sku_name               = var.server_sku_name
-  delegated_subnet_id    = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/virtualNetworks/vnet-int/subnets/snet-int"
-  private_dns_zone_id = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/privateDnsZones/plink.postgres.database.azure.com"
+  delegated_subnet_id    = "/subscriptions/3addec57-7ce8-4b3f-8d30-747c47e7f9b8/resourceGroups/networking-rg/providers/Microsoft.Network/virtualNetworks/int-vnet/subnets/postgres_subnet"
+  private_dns_zone_id = "/subscriptions/3addec57-7ce8-4b3f-8d30-747c47e7f9b8/resourceGroups/usecreapp-rg/providers/Microsoft.Network/privateDnsZones/privatelink.postgres.database.azure.com"
   public_network_access_enabled = false
   administrator_login    = var.server_administrator_login
   administrator_password = var.server_administrator_password
@@ -58,7 +58,7 @@ resource "azurerm_linux_web_app" "wausersmanagement" {
   resource_group_name = azurerm_resource_group.rgusersmanagement.name
   location            = var.resource_group_location
   service_plan_id     = azurerm_service_plan.spusersmanagement.id
-  virtual_network_subnet_id = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-int/providers/Microsoft.Network/virtualNetworks/vnet-ext/subnets/snet-wa-integration"
+  virtual_network_subnet_id = "/subscriptions/3addec57-7ce8-4b3f-8d30-747c47e7f9b8/resourceGroups/networking-rg/providers/Microsoft.Network/virtualNetworks/ext-vnet/subnets/usersmanagement_integration_subnet"
   depends_on = [ 
     azurerm_postgresql_flexible_server.databaseusersmanagement
   ]
@@ -108,10 +108,9 @@ resource "azurerm_linux_function_app" "linux_function_app" {
   location                    = azurerm_storage_account.sausersmanagement.location
   resource_group_name         = azurerm_storage_account.sausersmanagement.resource_group_name
   service_plan_id             = azurerm_service_plan.spusersmanagement.id
-  # storage_account_name        = azurerm_storage_account.sausersmanagement.name
+  storage_account_name        = azurerm_storage_account.sausersmanagement.name
   storage_account_access_key  = azurerm_storage_account.sausersmanagement.primary_access_key
   functions_extension_version = "~4"
-
   app_settings = {
     AZURE_CLIENT_ID = " "
     AZURE_CLIENT_SECRET = " "

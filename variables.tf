@@ -9,12 +9,12 @@ variable DOCKER_IMAGE {
 
 variable DOCKER_REGISTARY_URL {
   type = string
-  default = "https://containerregistryautomationdev.azurecr.io"
+  default = "https://containerRegistryDIGProd.azurecr.io"
 }
 
 variable resource_group_ext_name {
   type = string
-  default = "rg-ext"
+  default = "rg-users-management-prod"
 }
 
 variable resource_group_location {
@@ -24,12 +24,12 @@ variable resource_group_location {
 
 variable storage_account_name {
   type    = string
-  default = "sttryvnet"
+  default = "stusersmanagementprod"
 }
 
 variable service_plan_name {
   type = string
-  default = "app-try-vnet"
+  default = "splan-users-management"
 }
 
 variable tenant_id {
@@ -39,17 +39,17 @@ variable tenant_id {
 
 variable web_app_name {
   type = string
-  default = "wa-try-vnet"
+  default = "wa-users-management-prod"
 }
 
 variable function_app_name {
   type    = string
-  default = "func-vnet"
+  default = "func-add-user-prod"
 }
 
 variable server_name {
   type = string
-  default = "sqldb-try-vnet"
+  default = "sqldb-users-management-prod"
 }
 
 variable server_version {
@@ -74,12 +74,12 @@ variable server_administrator_password {
 
 variable acr_name {
   type = string
-  default = "containerRegistryAutomationDev"
+  default = "containerRegistryDIGProd"
 }
 
 variable acr_resource_group_name {
   type = string
-  default = "rg-dev"
+  default = "rg-prod"
 }
 
 variable IMAGE_NAME {
