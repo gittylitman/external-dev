@@ -10,7 +10,7 @@ variable DOCKER_IMAGE {
 
 variable DOCKER_REGISTARY_URL {
   type = string
-  default = "https://containerRegistryDIGProd.azurecr.io"
+  default = "https://containerregistrydigprod.azurecr.io"
 }
 
 variable resource_group_ext_name {
