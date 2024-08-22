@@ -176,10 +176,10 @@ resource "azurerm_linux_function_app" "linux_function_app_planner" {
 }
 
 
-# data "azurerm_container_registry" "container_registry" {
-#   name                = var.acr_name
-#   resource_group_name = var.acr_resource_group_name
-# }
+data "azurerm_container_registry" "container_registry" {
+  name                = var.acr_name
+  resource_group_name = var.acr_resource_group_name
+}
 
 # resource "azurerm_role_assignment" "role_assignment_web_app" {
 #   principal_id                     = azurerm_linux_web_app.wausersmanagement.identity[0].principal_id
