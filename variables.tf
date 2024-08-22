@@ -48,6 +48,11 @@ variable function_app_name {
   default = "func-add-user-prod"
 }
 
+variable function_app_planner_name {
+  type    = string
+  default = "func_planner"
+}
+
 variable server_name {
   type = string
   default = "sqldb-users-management-prod"
@@ -81,6 +86,11 @@ variable acr_name {
 variable acr_resource_group_name {
   type = string
   default = "rg-prod"
+}
+
+variable IMAGE_NAME {
+  type    = string
+  default = "services/users_management/func_connect_planner"
 }
 
 variable IMAGE_NAME {
