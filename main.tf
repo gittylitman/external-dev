@@ -164,7 +164,7 @@ resource "azurerm_linux_function_app" "linux_function_app_planner" {
     application_stack {
       docker {
         registry_url = var.DOCKER_REGISTARY_URL
-        image_name = var.IMAGE_NAME
+        image_name = var.IMAGE_NAME_PLANNER
         image_tag = var.IMAGE_TAG
       }
     }

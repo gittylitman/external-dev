@@ -88,7 +88,7 @@ variable acr_resource_group_name {
   default = "rg-prod"
 }
 
-variable IMAGE_NAME {
+variable IMAGE_NAME_PLANNER {
   type    = string
   default = "services/users_management/func_connect_planner"
 }
