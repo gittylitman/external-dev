@@ -50,7 +50,7 @@ variable function_app_name {
 
 variable function_app_planner_name {
   type    = string
-  default = "func_planner"
+  default = "func-connect-planner"
 }
 
 variable server_name {
