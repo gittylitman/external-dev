@@ -141,7 +141,7 @@ provider "azurerm" {
 
 resource "azurerm_linux_function_app" "linux_function_app_planner" {
   name                        = var.function_app_name_planner
-  location                    = azurerm_storage_account.storage_account.location
+  location                    = var.resource_group_location
   resource_group_name         = "rg-users-management-prod"
   service_plan_id             = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-users-management-prod/providers/Microsoft.Web/serverFarms/splan-users-management"
   storage_account_name        = "stusersmanagementprod"
