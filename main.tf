@@ -201,9 +201,9 @@ resource "azurerm_role_assignment" "role_assignment_function_app_planner" {
 #   skip_service_principal_aad_check = true
 # }
 
-resource "azurerm_role_assignment" "role_assignment_function_app_planner" {
-  principal_id                     = azurerm_linux_function_app.linux_function_app_planner.identity[0].principal_id
-  role_definition_name             = "AcrPull"
-  scope                            = data.azurerm_container_registry.container_registry.id
-  skip_service_principal_aad_check = true
-}
+# resource "azurerm_role_assignment" "role_assignment_function_app_planner" {
+#   principal_id                     = azurerm_linux_function_app.linux_function_app_planner.identity[0].principal_id
+#   role_definition_name             = "AcrPull"
+#   scope                            = data.azurerm_container_registry.container_registry.id
+#   skip_service_principal_aad_check = true
+# }
