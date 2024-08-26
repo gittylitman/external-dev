@@ -43,14 +43,18 @@ variable web_app_name {
   default = "wa-users-management-prod"
 }
 
+variable IMAGE_NAME_2 {
+  type    = string
+  default = "services/users_management/func_connect_planner"
+}
+
+variable function_app_name_planner {
+  type    = string
+  default = "func-connect-planner"
+}
 variable function_app_name {
   type    = string
   default = "func-add-user-prod"
-}
-
-variable function_app_planner_name {
-  type    = string
-  default = "func-connect-planner"
 }
 
 variable server_name {
@@ -88,10 +92,6 @@ variable acr_resource_group_name {
   default = "rg-prod"
 }
 
-variable IMAGE_NAME_PLANNER {
-  type    = string
-  default = "services/users_management/func_connect_planner"
-}
 
 variable IMAGE_NAME {
   type    = string

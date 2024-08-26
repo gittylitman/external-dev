@@ -140,21 +140,20 @@ provider "azurerm" {
 # }
 
 resource "azurerm_linux_function_app" "linux_function_app_planner" {
-  name                        = var.function_app_planner_name
-  location                    = var.resource_group_location
+  name                        = var.function_app_name_planner
+  location                    = azurerm_storage_account.storage_account.location
   resource_group_name         = "rg-users-management-prod"
   service_plan_id             = "/subscriptions/22710479-535c-4bc6-9d25-2194bd78372f/resourceGroups/rg-users-management-prod/providers/Microsoft.Web/serverFarms/splan-users-management"
   storage_account_name        = "stusersmanagementprod"
   storage_account_access_key  = "Wdj6WJjB9J7B47ruG3Tto4WsrFEWUTYswsKbdgi5mn+QTGDwxqA43ywSGSVxCOtxACxQ5V4HQQDV+AStONW3QQ=="
   functions_extension_version = "~4"
+
   app_settings = {
-    AZURE_CLIENT_ID = " "
-    AZURE_CLIENT_SECRET = " "
-    AZURE_TENANT_ID = " "
-    DEPARTMENT = " "
-    EMAIL_SUFFIX = " "
-    EMAIL_SUFFIX = " "
+    PLANNER_CLIENT_ID = " "
+    PLANNER_CLIENT_SECRET = " "
+    PLANNER_ID = " "
     GRAPH_URL = " "
+    TENANT_ID = " "
     WEBSITES_ENABLE_APP_SERVICE_STORAGE = false
   }
 
@@ -164,7 +163,7 @@ resource "azurerm_linux_function_app" "linux_function_app_planner" {
     application_stack {
       docker {
         registry_url = var.DOCKER_REGISTARY_URL
-        image_name = var.IMAGE_NAME_PLANNER
+        image_name = var.IMAGE_NAME_2
         image_tag = var.IMAGE_TAG
       }
     }
@@ -175,11 +174,18 @@ resource "azurerm_linux_function_app" "linux_function_app_planner" {
   }
 }
 
-
 data "azurerm_container_registry" "container_registry" {
   name                = var.acr_name
   resource_group_name = var.acr_resource_group_name
 }
+
+resource "azurerm_role_assignment" "role_assignment_function_app_planner" {
+  principal_id                     = azurerm_linux_function_app.linux_function_app_planner.identity[0].principal_id
+  role_definition_name             = "AcrPull"
+  scope                            = data.azurerm_container_registry.container_registry.id
+  skip_service_principal_aad_check = true
+}
+
 
 # resource "azurerm_role_assignment" "role_assignment_web_app" {
 #   principal_id                     = azurerm_linux_web_app.wausersmanagement.identity[0].principal_id
